@@ -7,8 +7,8 @@ rem_1=0
 rem_2=0
 
 for  x  in {1..100}; do
-	rem_1=$($x % 3)
-	rem_2=$($x % 5)
+	rem_1=$((x % 3))
+	rem_2=$((x % 5))
 
 	if [ "$rem_1" -eq 0 ] && [ "$rem_2" -eq 0 ]; then
 		echo "$y""$z"
