@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#  a Bash script that displays To infinity and beyond indefinitely.
+
+# Terminate the infinate process
+pkill -15 "bash ./4-to_infinity_and_beyond" -f
