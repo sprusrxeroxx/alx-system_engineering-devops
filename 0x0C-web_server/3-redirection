@@ -11,7 +11,7 @@ echo 'Hello World' > /var/www/html/index.html
 
 # update config file to redirect
 printf %s "server {
-    listen 80;
+    listen 80 default_server;
     listen [::]:80 default_server;
     root   /var/www/html/;
     index  index.html;
