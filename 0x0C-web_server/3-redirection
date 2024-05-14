@@ -24,3 +24,4 @@ printf %s "server {
 
 # start nginx after reloading config
 service nginx start
+curl 
