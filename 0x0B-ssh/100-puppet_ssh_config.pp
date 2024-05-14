@@ -3,7 +3,7 @@
 class { 'ssh' :
   ChallengeResponseAuthentication => 'no',
 
-  Host { '*':
+  Host { 'ubuntu':
     IdentityFile => '~/.ssh/school',
   }
 }
