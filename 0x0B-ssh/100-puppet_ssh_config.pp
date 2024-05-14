@@ -1,3 +1,5 @@
+#This is a script to disable password authentication on my ssh server
+
 class { 'ssh' :
   # Disable password authentication
   ChallengeResponseAuthentication => 'no',
