@@ -6,17 +6,17 @@ apt-get -y update
 apt-get -y install nginx
 
 # update index.html file
-echo 'Hello World' > /usr/share/nginx/html/index.html
+echo 'Hello World' > /var/www/html/index.html
 
 # update config file to redirect
 printf %s "server {
     listen 80;
     listen [::]:80 default_server;
-    root   /usr/share/nginx/html;
+    root   /var/www/html/;
     index  index.html index.htm;
 
     location /redirect_me {
-        return 301 http://google.com/;
+        return 301 https://github.com/sprusrxeroxx;
     }
 
 }" > $CONFIG_FILE
