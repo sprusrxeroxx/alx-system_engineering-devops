@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# script for configuring HAProxy load balancer server
+MY_ID=530871
+CONFIG_FILE=/etc/haproxy/haproxy.cfg
+CONFIG_LINES="
+frontend lb-frontend
+        bind *:80
+        mode http
+        default_backend web-backend
+
+backend web-backend
+        balance roundrobin
+        server 530871-web-01 54.157.151.229:80
+        server 530871-web-02 54.89.135.236:80
+"
+
+# check if hostname is correct
+if [[ $(hostname) =~ ^$MY_ID-lb-[0-9]+ ]]; then
+    echo 'hostname properly configured'
+else
+    >&2 echo 'hostname not configured properly...'
+    >&2 echo 'please set hostname to pattern: 530871-lb-<server_id>...'
+    >&2 echo 'Example: sudo hostnamectl set-hostname 530871-lb-<insert_server_id_here>'
+fi
+
+# check if HAProxy was previously configured
+if [ "$(grep -o "$CONFIG_LINES" $CONFIG_FILE | wc -l)" != 0 ]; then
+	echo 'HAProxy already configured to script specs :)...'
+	# restart HAProxy
+	service haproxy restart
+else
+	# install HAProxy Version 1.8
+	apt-get -y install software-properties-common
+	add-apt-repository -y ppa:vbernat/haproxy-1.8
+	apt-get -y update
+	apt-get -y install haproxy=1.8.\*
+
+	# configure HAProxy
+
+	printf "%s" "$CONFIG_LINES" >> $CONFIG_FILE
+
+	# start HAProxy
+	service haproxy start
+fi
