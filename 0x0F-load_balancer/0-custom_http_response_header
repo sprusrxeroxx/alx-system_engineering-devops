@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#Create a script that adds a custom header to the Nginx server block configuration.
+
+sudo apt-get update
+
+# Install Nginx web server if not already installed
+if ! which nginx >/dev/null 2>&1; then
+  sudo apt-get install nginx -y
+fi
+
+SERVER_HOSTNAME=$(hostname)
+
+SERVER_BLOCK="/etc/nginx/sites-available/default"
+
+# Updates server block configuration with custom header
+sed -i "s/server {/server {\n  add_header X-Served-By $SERVER_HOSTNAME;\n/g" "$SERVER_BLOCK"
+
+service nginx restart
+
+echo "Nginx server reloaded. Custom header X-Served-By: $SERVER_HOSTNAME added to responses."
