@@ -10,8 +10,8 @@ frontend lb-frontend
 
 backend web-backend
         balance roundrobin
-        server web-01 54.157.151.229
-        server web-02 54.89.135.236
+        server web-01 54.157.151.229:80
+        server web-02 54.89.135.236:80
 "
 
 # check if hostname is correct
