@@ -2,7 +2,7 @@
 # A Bash script that will display information about subdomains.
 
 print_subdomain() {
-    dig "$1" | grep -A1 "ANSWER SECTION" | sed -r "s/$1.$2.//g" | awk -F" "'NR==2 { print "The subdomain "$1" is a "$4" record and points to" $5 }'
+    dig "$1" | grep -A1 "ANSWER SECTION" | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain "$1" is a "$4" record and points to" $5 }'
 }
 
 if [ $4 -eq 2]
