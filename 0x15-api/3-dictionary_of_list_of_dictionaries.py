@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """"
-Python script that exports all employee task data 
+Python script that exports all employee task data
 from an API in JSON format.
 """
 import requests
