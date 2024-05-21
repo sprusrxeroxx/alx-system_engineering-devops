@@ -2,9 +2,10 @@
 """"
 Python script that exports data from an API in JSON format.
 """
+import json
 import requests
 import sys
-import json
+
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/users'
