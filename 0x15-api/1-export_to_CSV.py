@@ -2,8 +2,8 @@
 """"
 Python script that exports data from an API in CSV format.
 """
-import requests
 import sys
+import requests
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/users'
     response = requests.get(url)
